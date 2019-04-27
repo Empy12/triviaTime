@@ -1,0 +1,15 @@
+.label {
+   -fx-text-alignment: center;
+   -fx-font-family: helvetica;
+   -fx-font-size: 30pt;
+   -fx-font-weight: bold;
+}
+
+.button {
+
+-fx-text-alignment: center;
+-fx-font-family: helvetica;
+-fx-font-size: 15pt;
+
+
+}
