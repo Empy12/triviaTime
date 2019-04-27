@@ -1,0 +1,463 @@
+import javafx.application.Application;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.control.Label;
+import javafx.scene.text.Font;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.geometry.Pos; 
+import javafx.scene.paint.Color; 
+import javafx.scene.layout.GridPane;
+import javafx.scene.control.Button;
+import javafx.scene.text.Font;
+import javafx.geometry.Insets;
+import javafx.event.EventHandler;
+import javafx.event.ActionEvent;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
+import java.util.*;
+
+public class TriviaGame extends Application{
+
+   private RadioButton [] truAnswers = new RadioButton[120];
+   private Label [] questionLabels = new Label[30];
+   private VBox [] questionBoxes = new VBox[30];
+   private int points=0;
+   private int [] easyNumbs = new int[]{2, 7, 8, 20, 27, 47, 60, 72, 98, 100};
+   private int [] mediumNumbs = new int[]{13, 19, 34, 39, 53, 66, 81, 88, 108, 116};
+   private int [] hardNumbs = new int[]{28, 40, 49, 58, 69, 78, 86, 93, 106, 114};
+   private VBox vb = new VBox();
+   private HBox wholeThing = new HBox();
+   private int nextCount = 0;
+   private Button nextBtn = new Button();
+   private Label answerLabel;
+   private VBox lastBox;
+
+   public static void main(String[] args)
+   {
+         // Launch the application.
+      launch(args);
+   }
+
+   @Override
+    public void start(Stage stage)
+   {
+     //question 1  C
+      questionLabels[0] = new Label ("Spinach is high in which mineral?");
+      truAnswers[0] = new RadioButton("A. Potassium");
+      truAnswers[1] = new RadioButton("B. Zinc");
+      truAnswers[2] = new RadioButton("C. Iron"); // correct
+      truAnswers[3] = new RadioButton("D. Calcium");
+      
+      
+      questionBoxes[0] = new VBox (questionLabels[0], truAnswers[0], truAnswers[1], truAnswers[2], truAnswers[3]);
+      
+      //question 2 D
+      questionLabels[1] = new Label ("What's the total number of dots on a pair of dice?");
+      truAnswers[4] = new RadioButton("A. 21");
+      truAnswers[5] = new RadioButton("B. 22");
+      truAnswers[6] = new RadioButton("C. 44"); 
+      truAnswers[7] = new RadioButton("D. 42");// correct
+      
+      
+      questionBoxes[1] = new VBox (questionLabels[1], truAnswers[4], truAnswers[5], truAnswers[6], truAnswers[7]);
+   
+   
+      
+      //question 3
+      questionLabels[2] = new Label ("Which zodiac sign is represented by a ram?");
+      truAnswers[8] = new RadioButton("A. Aries"); // correct
+      truAnswers[9] = new RadioButton("B. Capricorn");
+      truAnswers[10] = new RadioButton("C. Taurus");
+      truAnswers[11] = new RadioButton("D. Sagittarius");
+      
+      
+      questionBoxes[2] = new VBox (questionLabels[2], truAnswers[8], truAnswers[9], truAnswers[10], truAnswers[11]);
+      
+      
+      
+      //question 4
+      questionLabels[3] = new Label ("In Greek mythology, who turned all that he touched to gold?");
+      truAnswers[12] = new RadioButton("A. Perseus");
+      truAnswers[13] = new RadioButton("B. Midas"); //correct
+      truAnswers[14] = new RadioButton("C. Icarus");
+      truAnswers[15] = new RadioButton("D. Sisyphus");
+      
+      
+      questionBoxes[3] = new VBox (questionLabels[3], truAnswers[12], truAnswers[13], truAnswers[14], truAnswers[15]);
+      
+      
+      //question 5
+      questionLabels[4] = new Label ("What city hosted the 2012 Summer Olympics?");
+      truAnswers[16] = new RadioButton("A. Los Angeles, USA");
+      truAnswers[17] = new RadioButton("B. Beijing, China");
+      truAnswers[18] = new RadioButton("C. Paris, France");
+      truAnswers[19] = new RadioButton("D. London, England"); //correct
+      
+      
+      questionBoxes[4] = new VBox (questionLabels[4], truAnswers[16], truAnswers[17], truAnswers[18], truAnswers[19]);
+      
+      //question 6
+      questionLabels[5] = new Label ("What�s the highest possible score in 10 pin bowling?");
+      truAnswers[20] = new RadioButton("A. 300"); //correct
+      truAnswers[21] = new RadioButton("B. 250");
+      truAnswers[22] = new RadioButton("C. 350");
+      truAnswers[23] = new RadioButton("D. 200");
+      
+      
+      questionBoxes[5] = new VBox (questionLabels[5], truAnswers[20], truAnswers[21], truAnswers[22], truAnswers[23]);
+      
+      //question 7
+      questionLabels[6] = new Label ("Pharaoh is the title given to rulers of which ancient country?");
+      truAnswers[24] = new RadioButton("A. Greece");
+      truAnswers[25] = new RadioButton("B. Rome");
+      truAnswers[26] = new RadioButton("C. China");
+      truAnswers[27] = new RadioButton("D. Egypt"); //correct
+      
+      
+      questionBoxes[6] = new VBox (questionLabels[6], truAnswers[24], truAnswers[25], truAnswers[26], truAnswers[27]);
+      
+      //question 8
+      questionLabels[7] = new Label ("What are the two top selling spices in the world?");
+      truAnswers[28] = new RadioButton("A. Pepper and mustard");//correct
+      truAnswers[29] = new RadioButton("B. Basil and garlic");
+      truAnswers[30] = new RadioButton("C. Bay leaves and mint");
+      truAnswers[31] = new RadioButton("D. Pepper and basil");
+      
+      
+      questionBoxes[7] = new VBox (questionLabels[7], truAnswers[28], truAnswers[29], truAnswers[30], truAnswers[31]);
+      
+      //question 9
+      questionLabels[8] = new Label ("What was the first Heinz product?");
+      truAnswers[32] = new RadioButton("A. Ketchup");
+      truAnswers[33] = new RadioButton("B. Mustard");
+      truAnswers[34] = new RadioButton("C. Horseradish"); //correct
+      truAnswers[35] = new RadioButton("D. Relish");
+      
+      
+      questionBoxes[8] = new VBox (questionLabels[8], truAnswers[32], truAnswers[33], truAnswers[34], truAnswers[35]);
+      
+      //question 10
+      questionLabels[9] = new Label ("What part of the banana is used to make banana oil?");
+      truAnswers[36] = new RadioButton("A. Peel");
+      truAnswers[37] = new RadioButton("B. Insides");
+      truAnswers[38] = new RadioButton("C. Leaves");
+      truAnswers[39] = new RadioButton("D. No part"); //correct
+      
+      
+      questionBoxes[9] = new VBox (questionLabels[9], truAnswers[36], truAnswers[37], truAnswers[38], truAnswers[39]);
+      
+      //question 11
+      questionLabels[10] = new Label ("Where was the first hard rock caf�?");
+      truAnswers[40] = new RadioButton("A. London, UK"); //correct
+      truAnswers[41] = new RadioButton("B. Los Angeles, USA");
+      truAnswers[42] = new RadioButton("C. New York City, USA");
+      truAnswers[43] = new RadioButton("D. Sydney, Australia");
+      
+      
+      questionBoxes[10] = new VBox (questionLabels[10], truAnswers[40], truAnswers[41], truAnswers[42], truAnswers[43]);
+      
+      //question 12
+      questionLabels[11] = new Label ("Which was the first capital of USA?");
+      truAnswers[44] = new RadioButton("A. Washington, D.C.");
+      truAnswers[45] = new RadioButton("B. New York City");
+      truAnswers[46] = new RadioButton("C. Boston");
+      truAnswers[47] = new RadioButton("D. Philadelphia"); //correct
+      
+      
+      questionBoxes[11] = new VBox (questionLabels[11], truAnswers[44], truAnswers[45], truAnswers[46], truAnswers[47]);
+      
+      //question 13
+      questionLabels[12] = new Label ("Where was Karl Marx from?");
+      truAnswers[48] = new RadioButton("A. Russia");
+      truAnswers[49] = new RadioButton("B. Germany"); //correct
+      truAnswers[50] = new RadioButton("C. Italy");
+      truAnswers[51] = new RadioButton("D. Poland");
+      
+      
+      questionBoxes[12] = new VBox (questionLabels[12], truAnswers[48], truAnswers[49], truAnswers[50], truAnswers[51]);
+      
+      //question 14
+      questionLabels[13] = new Label ("How many US presidents have been assassinated?");
+      truAnswers[52] = new RadioButton("A. 3");
+      truAnswers[53] = new RadioButton("B. 4"); //correct
+      truAnswers[54] = new RadioButton("C. 5");
+      truAnswers[55] = new RadioButton("D. 6");
+      
+      
+      questionBoxes[13] = new VBox (questionLabels[13], truAnswers[52], truAnswers[53], truAnswers[54], truAnswers[55]);
+      
+      //question 15
+      questionLabels[14] = new Label ("Who was the inventor of the thermometer?");
+      truAnswers[56] = new RadioButton("A. Leonardo da Vinci");
+      truAnswers[57] = new RadioButton("B. Isaac Newton");
+      truAnswers[58] = new RadioButton("C. Galileo Galilei"); //correct
+      truAnswers[59] = new RadioButton("D. Benjamin Franklin");
+      
+      
+      questionBoxes[14] = new VBox (questionLabels[14], truAnswers[56], truAnswers[57], truAnswers[58], truAnswers[59]);
+      
+      //question 16
+      questionLabels[15] = new Label ("Cleopatra was killed by which of the following?");
+      truAnswers[60] = new RadioButton("A. Snake"); //correct
+      truAnswers[61] = new RadioButton("B. Poison");
+      truAnswers[62] = new RadioButton("C. Spider");
+      truAnswers[63] = new RadioButton("D. Stabbing");
+      
+      
+      questionBoxes[15] = new VBox (questionLabels[15], truAnswers[60], truAnswers[61], truAnswers[62], truAnswers[63]);
+      
+      //question 17
+      questionLabels[16] = new Label ("Which state was the birthplace of the cheeseburger?");
+      truAnswers[64] = new RadioButton("A. Arkansas");
+      truAnswers[65] = new RadioButton("B. Texas");
+      truAnswers[66] = new RadioButton("C. Colorado"); //correct
+      truAnswers[67] = new RadioButton("D. Pennsylvania");
+      
+      
+      questionBoxes[16] = new VBox (questionLabels[16], truAnswers[64], truAnswers[65], truAnswers[66], truAnswers[67]);
+      
+      //question 18
+      questionLabels[17] = new Label ("Who invented pie pastry?");
+      truAnswers[68] = new RadioButton("A. Ancient China");
+      truAnswers[69] = new RadioButton("B. Ancient Greeks"); //correct
+      truAnswers[70] = new RadioButton("C. Ancient Egyptians");
+      truAnswers[71] = new RadioButton("D. Ancient Rome");
+      
+      questionBoxes[17] = new VBox (questionLabels[17], truAnswers[68], truAnswers[69], truAnswers[70], truAnswers[71]);
+      
+      //19
+      questionLabels[18] = new Label ("What is the most ordered food in the US?");
+      truAnswers[72] = new RadioButton("A. Fried Chicken"); //correct
+      truAnswers[73] = new RadioButton("B. Hamburgers");
+      truAnswers[74] = new RadioButton("C. Pizza");
+      truAnswers[75] = new RadioButton("D. Bagels");
+      
+      
+      questionBoxes[18] = new VBox (questionLabels[18], truAnswers[72], truAnswers[73], truAnswers[74], truAnswers[75]);
+      
+      //20
+      questionLabels[19] = new Label ("What would you get if you mix all light colors together?");
+      truAnswers[76] = new RadioButton("A. Black");
+      truAnswers[77] = new RadioButton("B. Brown");
+      truAnswers[78] = new RadioButton("C. White"); //correct
+      truAnswers[79] = new RadioButton("D. Grey");
+      
+      
+      questionBoxes[19] = new VBox (questionLabels[19], truAnswers[76], truAnswers[77], truAnswers[78], truAnswers[79]);
+      
+     //21
+      questionLabels[20] = new Label ("Which is the hottest planet in our solar system?");
+      truAnswers[80] = new RadioButton("A. Mercury");
+      truAnswers[81] = new RadioButton("B. Venus"); //correct
+      truAnswers[82] = new RadioButton("C. Mars");
+      truAnswers[83] = new RadioButton("D. Earth");
+      
+      
+      questionBoxes[20] = new VBox (questionLabels[20], truAnswers[80], truAnswers[81], truAnswers[82], truAnswers[83]);
+      
+      //22
+      questionLabels[21] = new Label ("Hg is the chemical symbol of which element?");
+      truAnswers[84] = new RadioButton("A. Hydrogen");
+      truAnswers[85] = new RadioButton("B. Magnesium");
+      truAnswers[86] = new RadioButton("C. Mercury"); //correct
+      truAnswers[87] = new RadioButton("D. Helium");
+      
+      
+      questionBoxes[21] = new VBox (questionLabels[21], truAnswers[84], truAnswers[85], truAnswers[86], truAnswers[87]);
+      
+      //23
+      questionLabels[22] = new Label ("The Statue of Liberty was given to the US by which country?");
+      truAnswers[88] = new RadioButton("A. France"); //correct
+      truAnswers[89] = new RadioButton("B. United Kingdom");
+      truAnswers[90] = new RadioButton("C. Italy");
+      truAnswers[91] = new RadioButton("D. Spain");
+      
+      
+      questionBoxes[22] = new VBox (questionLabels[22], truAnswers[88], truAnswers[89], truAnswers[90], truAnswers[91]);
+      
+      //24
+      questionLabels[23] = new Label ("How many letters are in the German alphabet?");
+      truAnswers[92] = new RadioButton("A. 26");
+      truAnswers[93] = new RadioButton("B. 30"); //correct
+      truAnswers[94] = new RadioButton("C. 28");
+      truAnswers[95] = new RadioButton("D. 32");
+      
+      
+      questionBoxes[23] = new VBox (questionLabels[23], truAnswers[92], truAnswers[93], truAnswers[94], truAnswers[95]);
+      
+      //25
+      questionLabels[24] = new Label ("In the correct spelling of Halloween, where is the apostrophe placed?");
+      truAnswers[96] = new RadioButton("A. Ha�lloween");
+      truAnswers[97] = new RadioButton("B. Hall�oween");
+      truAnswers[98] = new RadioButton("C. Hallowe�en"); //correct
+      truAnswers[99] = new RadioButton("D. Hallowee�n");
+      
+      
+      questionBoxes[24] = new VBox (questionLabels[24], truAnswers[96], truAnswers[97], truAnswers[98], truAnswers[99]);
+      
+      //26
+      questionLabels[25] = new Label ("In what country did carving jack �o lanterns originate?");
+      truAnswers[100] = new RadioButton("A. Ireland"); //correct
+      truAnswers[101] = new RadioButton("B. Scotland");
+      truAnswers[102] = new RadioButton("C. United States");
+      truAnswers[103] = new RadioButton("D. England");
+      
+      
+      questionBoxes[25] = new VBox (questionLabels[25], truAnswers[100], truAnswers[101], truAnswers[102], truAnswers[103]);
+      
+      //27
+      questionLabels[26] = new Label ("What country holds the title for the World�s Heaviest Pumpkin?");
+      truAnswers[104] = new RadioButton("A. Ireland");
+      truAnswers[105] = new RadioButton("B. United States");
+      truAnswers[106] = new RadioButton("C. Switzerland"); //correct
+      truAnswers[107] = new RadioButton("D. Sweden");
+      
+      
+      questionBoxes[26] = new VBox (questionLabels[26], truAnswers[104], truAnswers[105], truAnswers[106], truAnswers[107]);
+      
+      //28
+      questionLabels[27] = new Label ("Where did Mary Shelley get the idea for Frankenstein�s monster?");
+      truAnswers[108] = new RadioButton("A. A dream"); //correct
+      truAnswers[109] = new RadioButton("B. An old relative");
+      truAnswers[110] = new RadioButton("C. A mentor");
+      truAnswers[111] = new RadioButton("D. A friend ");
+      
+      
+      questionBoxes[27] = new VBox (questionLabels[27], truAnswers[108], truAnswers[109], truAnswers[110], truAnswers[111]);
+      
+      //29
+      questionLabels[28] = new Label ("Why were so many mummies bought and sold in the Middle Ages?");
+      truAnswers[112] = new RadioButton("A. Artifacts");
+      truAnswers[113] = new RadioButton("B. Paint pigment");
+      truAnswers[114] = new RadioButton("C. Medicinal purposes"); //correct
+      truAnswers[115] = new RadioButton("D. Fertilizer");
+      
+      
+      questionBoxes[28] = new VBox (questionLabels[28], truAnswers[112], truAnswers[113], truAnswers[114], truAnswers[115]);
+      
+      //30
+      questionLabels[29] = new Label ("Which fingernail grows the fastest?");
+      truAnswers[116] = new RadioButton("A. Middle"); //correct
+      truAnswers[117] = new RadioButton("B. Pinky");
+      truAnswers[118] = new RadioButton("C. Pointer");
+      truAnswers[119] = new RadioButton("D. Thumb");
+      questionBoxes[29] = new VBox (questionLabels[29], truAnswers[116], truAnswers[117], truAnswers[118], truAnswers[119]);
+      
+      //winning screen
+      String addedpoints = Integer.toString(points);
+      String totalPoints = Integer.toString(getFinalPoints());
+      
+      
+      
+      
+      ToggleGroup rightBtns = new ToggleGroup();
+      for(int i=0; i<120; i++){
+         truAnswers[i].setToggleGroup(rightBtns);
+      }
+      
+      
+      
+      
+      nextBtn = new Button("Next ->");
+      nextBtn.setOnAction(new NextBtnHandler());
+      vb = new VBox(questionBoxes[nextCount]);
+      vb.setAlignment(Pos.CENTER);
+      HBox wholeThing = new HBox (vb, nextBtn);
+      wholeThing.setAlignment(Pos.CENTER);
+      
+      Scene scene = new Scene(wholeThing);
+      wholeThing.setStyle("-fx-background-color: #f2e371");
+      scene.getStylesheets().add("labelsntext.css");
+      stage.setScene(scene);
+      
+      stage.setTitle("Let's do some trivia!");
+      
+      stage.show();
+      
+      
+      
+      
+   }
+
+
+
+
+   public int getFinalPoints(){
+      int finalpoints = 0;
+      int addpoints = 0;
+      int [] pointVals = new int[]{2, 3, 5};
+      for(int i = 0; i< 3; i++){
+         addpoints = pointVals[i] * 10;
+         finalpoints = finalpoints + addpoints;
+      }
+   
+      return finalpoints;
+   }
+
+
+
+   class NextBtnHandler implements EventHandler<ActionEvent>
+   {
+      @Override
+         public void handle(ActionEvent event)
+      {
+         int turnpts=0;
+           
+           
+         for (int j=0; j<120; j++){
+            if(truAnswers[j].isSelected()){
+               
+               for(int i = 0; i<10; i++){
+               
+                  int tempnumb = easyNumbs[i];
+                  if(tempnumb == j){
+                     turnpts = 2;}
+               }
+             
+               
+               for(int i = 0; i<10; i++){
+                  int tempnumb = mediumNumbs[i];
+                  if(tempnumb == j){
+                     turnpts = 3;}
+               }
+               for(int i = 0; i<10; i++){
+                  int tempnumb = hardNumbs[i];
+                  if(tempnumb == j){
+                     turnpts = 5;}
+               }
+               
+            }
+             
+         }
+           
+           
+           
+            
+         points = points + turnpts;
+           
+         if (nextCount < 29){
+            vb.getChildren().remove(questionBoxes[nextCount]);
+            
+            nextCount = nextCount + 1;
+            vb.getChildren().add(questionBoxes[nextCount]);}
+            
+         else if (nextCount == 29){
+         vb.getChildren().remove(questionBoxes[nextCount]);
+         Label answerLabel = new Label ("Your final score is... "+ points + " out of ...100" );
+        VBox lastBox = new VBox (answerLabel);
+         vb.getChildren().add(lastBox);
+         }
+       
+           
+           
+      }}
+
+
+
+
+
+}
